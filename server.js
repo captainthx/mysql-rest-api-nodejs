@@ -8,9 +8,9 @@ app.use(express.json());
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'root',
+    password: '',
     database: 'mysql_nodejs',
-    port: '8889'
+    port:'3306'
 })
 
 connection.connect((err) => {
@@ -29,7 +29,7 @@ app.post("/create", async (req, res) => {
         connection.query(
             "INSERT INTO users(email, fullname, password) VALUES(?, ?, ?)",
             [email, name, password],
-            (err, results, fields) => {
+            (err, results, fields) => { 
                 if (err) {
                     console.log("Error while inserting a user into the database", err);
                     return res.status(400).send();
